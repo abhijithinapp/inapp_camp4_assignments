@@ -31,6 +31,7 @@ def searchbyNumber():
     msgJson = {"option":5, "params":{"phn":phn}}
     return msgJson
 
+
 def actionToSelectedOption(option):
     global msg
     msg = ""
@@ -78,6 +79,8 @@ def client_program():
     
     """))
         message = actionToSelectedOption(option)
+        if option == 6:
+            break
         #if the msg is not 'exit', encode and send it to server
         client_socket.send(message.encode())
         #receive any reply from the server
@@ -88,6 +91,7 @@ def client_program():
         
 
     #close the socket connection once the while loop is exited
+    print("closing connection ...")
     client_socket.close()
 
 if __name__ == '__main__': 

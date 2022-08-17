@@ -8,7 +8,6 @@ def addContact(params):
     name = params['name']
     phoneNumber = params['phn']
     phoneNumbers[name] = phoneNumber 
-    print("Contact added")
     msg = json.dumps({"status" : "Contact added successfully",
     "value" :None})
     return msg
