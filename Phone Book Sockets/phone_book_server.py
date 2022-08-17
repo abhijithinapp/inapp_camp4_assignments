@@ -40,6 +40,7 @@ def searchByName(params):
         value = "Name: {}     Phone Number: {}".format(name,phoneNumbers[name])
     else:
         status = "Name not found"
+        value = None
     msg = json.dumps({"status" : status,
     "value" :value})
     return msg
@@ -54,6 +55,7 @@ def searchbyNumber(params):
                 value = "Name : {} Phone Number: {}".format(name,phn_number)
     else:
         status = "Phone number not found"
+        value = None
     msg = json.dumps({"status" : status,
     "value" :value})
     return msg

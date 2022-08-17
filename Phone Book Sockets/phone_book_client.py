@@ -1,6 +1,26 @@
 import json
 import socket
+import re
 phoneNumbers = {}
+class Utils:
+    def getInt(*msg):
+        while(True):
+            try:
+                value = int(input(*msg))
+                return value
+            except:
+                print("Enter a valid number")
+                continue
+
+    def getNumber(*msg):
+        while(True):
+                value = input(*msg)
+                if re.match(r'\+[0-9]*', value):
+                    return value
+                else:
+                    print("Enter a valid number")
+                    continue
+
 
 def listAllContacts():
     msgJson = {"option" : 1, "params":None}
@@ -9,7 +29,7 @@ def listAllContacts():
 def addContact():
     msg = {}
     name = input("Enter name: ")
-    phoneNumber = input("Enter Phone Number: ")
+    phoneNumber = Utils.getNumber("Enter Phone Number: ")
     msgJson = {"option":2, "params":{"name":name,"phn":phoneNumber}}
     return msgJson
 
@@ -27,7 +47,7 @@ def searchByName():
     return msgJson
 
 def searchbyNumber():
-    phn = input("Enter the phone number: ")
+    phn = Utils.getNumber("Enter the phone number: ")
     msgJson = {"option":5, "params":{"phn":phn}}
     return msgJson
 
@@ -68,7 +88,7 @@ def client_program():
     
 
     while True:
-        option = int(input("""
+        option = Utils.getInt("""
     Choose the required option
     1. List all contacts
     2. Add a new contact
@@ -77,7 +97,7 @@ def client_program():
     5. Search by number
     6. exit
     
-    """))
+    """)
         message = actionToSelectedOption(option)
         if option == 6:
             break
